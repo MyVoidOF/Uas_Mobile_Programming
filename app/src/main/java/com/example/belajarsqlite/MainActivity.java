@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
     MhsModel mm;
     DbHelper db;
     boolean isEdit;
-
+    // Zalfa Destian Ramadhani
+    // G.211.20.0076
+    // Kelas A2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
         mhsList = new ArrayList<>();
 
         isEdit = false;
-
+// Zalfa Destian Ramadhani
+// G.211.20.0076
+// Kelas A2
         Intent intent_main = getIntent();
         if(intent_main.hasExtra("mhsData")){
             mm = intent_main.getExtras().getParcelable("mhsData");
@@ -47,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
             btnSimpan.setBackgroundColor(Color.GREEN);
             btnSimpan.setText("Edit");
         }
-
+        // Zalfa Destian Ramadhani G.211.20.0076
+        // MIM G.211.20.0076
+        // Kelas A2
         db = new DbHelper(getApplicationContext());
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,46 +61,56 @@ public class MainActivity extends AppCompatActivity {
                 String isian_nama = edNama.getText().toString();
                 String isian_nim = edNim.getText().toString();
                 String isian_noHp = edNoHp.getText().toString();
-
+                // Zalfa Destian Ramadhani
+                // G.211.20.0076
+                // Kelas A2
                 if (isian_nama.isEmpty() || isian_nim.isEmpty() || isian_noHp.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Isian masih kosong", Toast.LENGTH_SHORT).show();
                 } else {
-                    //mhsList.add(new MhsModel(1, isian_nama, isian_nim, isian_noHp));
-
-                    boolean stts;
-
-                    if(!isEdit){
-                        mm = new MhsModel(-1, isian_nama, isian_nim, isian_noHp);
-                        stts = db.simpan(mm);
-                        edNama.setText("");
-                        edNim.setText("");
-                        edNoHp.setText("");
-
-                    }else{
-                        mm = new MhsModel(mm.getId(), isian_nama, isian_nim, isian_noHp);
-                        stts = db.ubah(mm);
+                    int dataCount = db.list().size();
+                    if (dataCount >= 5) {
+                        Toast.makeText(getApplicationContext(), "Batas maksimum data telah tercapai", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (!isEdit) {
+                            mm = new MhsModel(-1, isian_nama, isian_nim, isian_noHp);
+                            boolean stts = db.simpan(mm);
+                            if (stts) {
+                                Toast.makeText(getApplicationContext(), "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
+                                edNama.setText("");
+                                edNim.setText("");
+                                edNoHp.setText("");
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Gagal menyimpan data", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            mm = new MhsModel(mm.getId(), isian_nama, isian_nim, isian_noHp);
+                            boolean stts = db.ubah(mm);
+                            if (stts) {
+                                Toast.makeText(getApplicationContext(), "Data berhasil diubah", Toast.LENGTH_SHORT).show();
+                                edNama.setText("");
+                                edNim.setText("");
+                                edNoHp.setText("");
+                                isEdit = false;
+                                btnSimpan.setBackgroundColor(Color.LTGRAY);
+                                btnSimpan.setText("Simpan");
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Gagal mengubah data", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
-
-                    if(stts){
-
-                        Toast.makeText(getApplicationContext(), "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Data Gagal Disimpan", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-                    //intent_list.putParcelableArrayListExtra("mhsList", mhsList);
-                    //startActivity(intent_list);
                 }
             }
         });
-
+    // Zalfa Destian Ramadhani
+    // G.211.20.0076
+    // Kelas A2
         Button btnLihat = (Button) findViewById(R.id.btnLihat);
         btnLihat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // Zalfa Destian Ramadhani
+                // G.211.20.0076
+                // Kelas A2
                 mhsList = db.list();
 
                 if (mhsList.isEmpty()) {
@@ -105,7 +121,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent_list);
                 }
 
-
+    // Zalfa Destian Ramadhani
+    // G.211.20.0076
+    // Kelas A2
             }
         });
     }

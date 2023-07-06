@@ -16,7 +16,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class ListMhsActivity extends AppCompatActivity {
-
+    // Zalfa Destian Ramadhani
+    // G.211.20.0076
+    // Kelas A2
     MhsAdapter mhsAdapter;
 
     @Override
@@ -25,10 +27,16 @@ public class ListMhsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listmhs);
 
         //ListView lvNama = (ListView) findViewById(R.id.lvNama);
-
+        // Zalfa Destian Ramadhani
+        // G.211.20.0076
+        // Kelas A2
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         ArrayList<MhsModel> mhsList = getIntent().getExtras().getParcelableArrayList("mhsList");
+
+// Zalfa Destian Ramadhani
+// G.211.20.0076
+// Kelas A2
 
         mhsAdapter = new MhsAdapter(mhsList, new MhsAdapter.OnItemClickListener() {
             @Override
@@ -41,7 +49,9 @@ public class ListMhsActivity extends AppCompatActivity {
 
                         DbHelper db = new DbHelper(getApplicationContext());
                         MhsModel mm = mhsList.get(position);
-
+                        // Zalfa Destian Ramadhani
+                        // G.211.20.0076
+                        // Kelas A2
                         switch (item){
                             case 0:
 
@@ -63,7 +73,9 @@ public class ListMhsActivity extends AppCompatActivity {
                 dialog.create().show();
             }
         });
-
+// Zalfa Destian Ramadhani
+// G.211.20.0076
+// Kelas A2
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListMhsActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mhsAdapter);
@@ -75,7 +87,9 @@ public class ListMhsActivity extends AppCompatActivity {
                 startActivity(new Intent(ListMhsActivity.this, MainActivity.class));
             }
         });
-
+// Zalfa Destian Ramadhani
+// G.211.20.0076
+// Kelas A2
 
         //if(mhsList.isEmpty()) {
         //    mhsList.add("Data Masih Kosong");
@@ -84,6 +98,8 @@ public class ListMhsActivity extends AppCompatActivity {
         //
         //lvNama.setAdapter(ad_nama);
 
-
+// Zalfa Destian Ramadhani
+// G.211.20.0076
+// Kelas A2
     }
 }
